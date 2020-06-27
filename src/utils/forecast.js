@@ -17,7 +17,7 @@ const forecast=(lat,long,callback)=>{
        }else{
 
         const forecastResult= response.body.current.weather_descriptions[0]+' through out the day. The temperature is '+response.body.current.temperature
-        +' degree out. But it feels like '+response.body.current.feelslike+' degree.'
+        +' degree out. But it feels like '+response.body.current.feelslike+' degree.The humidity is '+response.body.current.humidity+' %.'
 
           callback(undefined,forecastResult)
 
