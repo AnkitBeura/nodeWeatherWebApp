@@ -23,14 +23,14 @@ app.use(express.static(publicDirectoryPath))
 app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather',
-        name: 'Andrew Mead'
+        name: 'Ankit Beura'
     })
 })
 
 app.get('/about', (req, res) => {
     res.render('about', {
         title: 'About Me',
-        name: 'Andrew Mead'
+        name: 'Ankit Beura'
     })
 })
 
@@ -38,7 +38,7 @@ app.get('/help', (req, res) => {
     res.render('help', {
         helpText: 'This is some helpful text.',
         title: 'Help',
-        name: 'Andrew Mead'
+        name: 'Ankit Beura'
     })
 })
 
@@ -50,13 +50,13 @@ app.get('/weather', (req, res) => {
         })
     }
 
-    geocode(req.query.address,(error,data)=>{
+geocode(req.query.address,(error,{latitude=0,longitude=0,location}={})=>{
 
         if(error){
            return res.send(error);
         }
      
-      forecast(data.latitude,data.longitude,(error,forecastData)=>{
+      forecast(latitude,longitude,(error,forecastData)=>{
      
         if(error){
            return res.send(error);
@@ -64,7 +64,7 @@ app.get('/weather', (req, res) => {
      
         res.send({
             forecast: forecastData,
-            location: data.location,
+            location: location,
             address:req.query.address
         })
      
@@ -92,7 +92,7 @@ app.get('/products',(req,res)=>{
 app.get('/help/*', (req, res) => {
     res.render('404', {
         title: '404',
-        name: 'Andrew Mead',
+        name: 'Ankit Beura',
         errorMessage: 'Help article not found.'
     })
 })
@@ -100,7 +100,7 @@ app.get('/help/*', (req, res) => {
 app.get('*', (req, res) => {
     res.render('404', {
         title: '404',
-        name: 'Andrew Mead',
+        name: 'Ankit Beura',
         errorMessage: 'Page not found.'
     })
 })
